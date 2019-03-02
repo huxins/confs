@@ -1,0 +1,37 @@
+# Pixiv
+210.140.131.222 www.pixiv.net
+210.140.131.222 pixiv.net
+210.140.131.153 source.pixiv.net
+210.140.131.224 accounts.pixiv.net
+210.140.131.145 imgaz.pixiv.net
+
+
+# Github
+151.101.109.194 github.global.ssl.fastly.net
+192.30.253.113 github.com
+151.101.108.133 assets-cdn.github.com
+185.199.108.153 documentcloud.github.com
+185.199.111.153 gist.github.com
+185.199.111.153 help.github.com
+192.30.253.121 nodeload.github.com
+151.101.108.133 raw.github.com
+203.208.39.99 status.github.com
+192.30.253.166 training.github.com 
+192.30.255.113 www.github.com
+151.101.1.194 github.global.ssl.fastly.net
+151.101.0.133 avatars0.githubusercontent.com
+151.101.68.133 avatars1.githubusercontent.com
+151.101.0.133 raw.githubusercontent.com
+
+104.28.2.179 doub.io
+
+#比目鱼
+127.0.0.1 www.fishlee.net
+127.0.0.1 storage.fishlee.net
+127.0.0.1 netcnex.dns.fishlee.net
+
+# XMind Mind-Mapper
+0.0.0.0 xmind.net
+0.0.0.0 www.xmind.net
+
+0.0.0.0 account.jetbrains.com
