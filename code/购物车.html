@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			td{
+				width: 100px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse;">
+			<tr>
+				<td>
+					<input type="checkbox" id="allCheck"/>
+					<label for="allCheck">全选</label>
+				</td>
+				<td>商品</td>
+				<td>单价</td>
+				<td>数量</td>
+				<td>小计</td>
+				<td>操作</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" class="item" />
+				</td>
+				<td>佳能</td>
+				<td>100</td>
+				<td>
+					<button class="oper">-</button>
+					<span>1</span>
+					<button class="oper">+</button>
+				</td>
+				<td>100</td>
+				<td>
+					<button class="del">删除</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" class="item" />
+				</td>
+				<td>佳能</td>
+				<td>200</td>
+				<td>
+					<button class="oper">-</button>
+					<span>1</span>
+					<button class="oper">+</button>
+				</td>
+				<td>200</td>
+				<td>
+					<button class="del">删除</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" class="item" />
+				</td>
+				<td>佳能</td>
+				<td>300</td>
+				<td>
+					<button class="oper">-</button>
+					<span>1</span>
+					<button class="oper">+</button>
+				</td>
+				<td>300</td>
+				<td>
+					<button class="del">删除</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" class="item" />
+				</td>
+				<td>佳能</td>
+				<td>400</td>
+				<td>
+					<button class="oper">-</button>
+					<span>1</span>
+					<button class="oper">+</button>
+				</td>
+				<td>400</td>
+				<td>
+					<button class="del">删除</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" class="item" />
+				</td>
+				<td>佳能</td>
+				<td>500</td>
+				<td>
+					<button class="oper">-</button>
+					<span>1</span>
+					<button class="oper">+</button>
+				</td>
+				<td>500</td>
+				<td>
+					<button class="del">删除</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button class="allDel">删除所有</button>
+				</td>
+				<td colspan="3">
+					已选商品<span class="totalNum">29</span>件
+				</td>
+				<td colspan="2">
+					合计:¥<span class="totalMoney">8700</span>
+				</td>
+			</tr>
+		</table>
+	</body>
+	<script type="text/javascript">
+		var allCheck = document.getElementById("allCheck");//全选框
+		var items = document.getElementsByClassName("item");//除去全选，所有的复选框；
+		var opers = document.getElementsByClassName("oper");//所有的运算符；
+		var dels = document.getElementsByClassName("del");//所有的删除按钮
+		var allDel = document.querySelector(".allDel");//删除所有的按钮；
+		var totalNum = document.querySelector(".totalNum");//总件数；
+		var totalMoney = document.querySelector(".totalMoney");//总金额；
+		
+		setNumAndMoney();
+		
+		//--全选按钮的点击事件
+		allCheck.onclick = function(){
+			for(var i=0;i<items.length;i++){
+				items[i].checked = allCheck.checked;
+			}
+			setNumAndMoney();
+		}
+		
+		//--所有的item点击事件
+		for(var i=0;i<items.length;i++){
+			items[i].onclick = function(){
+				var count=0;
+				for(var j=0;j<items.length;j++){
+					if(items[j].checked){
+						count++;
+					}
+				}
+				if(count==items.length){
+					allCheck.checked = true;
+				}else{
+					allCheck.checked = false;
+				}
+				setNumAndMoney();
+			}
+		}
+		
+		//----所有的运算符绑定点击事件；
+		for(var i=0;i<opers.length;i++){
+			opers[i].onclick = function(){
+				var num = Number(this.parentNode.children[1].innerText);
+				switch (this.innerText){
+					case "+":
+					num++;
+					break;
+					case "-":
+					if(num>0){num--;}
+					break;
+				}
+				this.parentNode.children[1].innerText = num;
+				this.parentNode.parentNode.children[4].innerText = num*this.parentNode.parentNode.children[2].innerText;
+				setNumAndMoney();
+			}
+		}
+		
+		
+		//删除dels绑定点击事件；
+		for(var i=0;i<dels.length;i++){
+			dels[i].onclick = function(){
+				this.parentNode.parentNode.remove();
+				setNumAndMoney();
+				if(dels.length==0){//当购物车被清空时，全选按钮关闭；
+					allCheck.checked = false;
+				}
+			}
+		}
+		
+		//allDel删除所有按钮的点击事件；
+		allDel.onclick = function(){
+			for(var i=0;i<items.length;i++){
+				if(items[i].checked){
+					items[i].parentNode.parentNode.remove();
+					i--;
+				}
+			}
+			setNumAndMoney();
+			if(dels.length==0){
+				allCheck.checked = false;
+			}
+		}
+		
+		
+		
+		function setNumAndMoney(){
+			var tN = 0;//件数；
+			var tM = 0;//金额；
+			for(var i=0;i<items.length;i++){
+				if(items[i].checked){
+					tN+=parseInt(items[i].parentNode.parentNode.children[3].children[1].innerText);
+					tM+=parseInt(items[i].parentNode.parentNode.children[4].innerText);
+				}
+			}
+			totalNum.innerText = tN;
+			totalMoney.innerText =tM;
+		}
+	</script>
+</html>

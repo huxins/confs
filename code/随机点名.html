@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.name{
+				margin: 0 auto;
+				background: red;
+				color: white;
+				font-size: 50px;
+				text-align: center;
+				width: 300px;
+				height: 100px;
+				line-height: 100px;
+			}
+			.st{
+				margin: 0 auto;
+				background: orangered;
+				color: white;
+				font-size: 50px;
+				text-align: center;
+				width: 300px;
+				height: 100px;
+				line-height: 100px;
+			}
+			.num{
+				margin: 0 auto;
+				background: goldenrod;
+				color: white;
+				font-size: 50px;
+				text-align: center;
+				width: 300px;
+				height: 100px;
+				line-height: 100px;
+			}
+			.show{
+				margin: 0 auto;
+				background: green;
+				color: white;
+				font-size: 70px;
+				text-align: center;
+				width: 300px;
+				height: 100px;
+				line-height: 100px;
+				transition: 2s;
+				opacity: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="num">180402</div>
+		<div class="name">START</div>
+		<div class="st">STOP</div>
+		<div class="show"></div>
+	</body>
+	<script type="text/javascript">
+		var nm = document.querySelector(".name");
+		var show = document.querySelector(".show");
+		var rd2;
+		var arr2=[];
+		var arr =["陈晨", "廖东东", "郑祥兴", "辛凯", "张书豪", "吴青", "赵朋军", "胡晓军", "李念", "张世轩", "韩瑞", "周权", "关晓薇", "杨晓航", "邱荣誉", "肖鹏", "李智潜", "陶游","张燕飞"];
+		console.log(arr.length);
+	function getRand(min,max){
+	return Math.floor(Math.random()*(max-min)+min);
+}
+	var timer1,timer2;
+	var isAllowed = false;
+	var st = document.querySelector(".st");
+	nm.onclick = function(){
+		isAllowed = true;
+		clearInterval(timer1);
+		show.style.opacity ="0";
+		show.style.transform = "rotateX(-1800deg) translateX(500px)";
+		timer1 = setInterval(function(){
+			var rd = getRand(0,arr.length);
+			nm.innerText = arr[rd];
+			show.innerText = arr[rd];
+		},20)
+			getDiff();
+	}
+	
+	st.onclick = function(){
+		if(isAllowed){
+			
+		isAllowed = false;
+		clearInterval(timer1);
+		show.style.opacity ="1";
+		show.style.transform = "rotateX(1800deg) translateX(0px)";
+		nm.innerText = "START";
+		
+			arr2.unshift(rd2);
+			if(arr2.length>arr.length){
+				arr2=[];
+				show.innerText ="下一轮";
+			}else{
+				show.innerText = arr[rd2];
+			}
+			
+		}
+		console.log(arr2);
+	}
+	
+	
+	
+	
+	
+	function getDiff(){
+		rd2 = getRand(0,arr.length);
+		for(var i=0;i<arr2.length;i++){
+			if(rd2==arr2[i]){
+				getDiff();
+			}
+		}
+	}
+	
+	</script>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+	var ans = ["DADDB","CCBBC","BABAA","ACCBB","BAABA","ABCBB","BAADA","DDDAB"];
+
+	var stu = [
+		{
+			name:"赵朋军",
+			ans:["dadbb","bdaac","abbca","acdab","bcbda","dcbbc","cdcbb ","dddab"]
+		},
+		{
+			name:"毕正逸",
+			ans:["dadbb","cabbc","caaca","aabdc","bcccd","cadad","dcbad","dddab"]
+		},
+		{
+			name:"刘斌",
+			ans:["DADBD","CABBC","AABDC","ACCDB","DAABA","DBCBB","BDABA","DDDAD"]
+		},
+		{
+			name:"吴青",
+			ans:["DADCB","CDAAC","CAAAA","AACBC","BBABB","DBDAB","BACBB","DDDAB"]
+		},
+		{
+			name:"欧阳继雄",
+			ans:["BADDC","ADBAC","CADCB","DDBBC","BCCAD","DBCAA","BDDCB","D"]
+		},
+		{
+			name:"凡鹏",
+			ans:["badbc","cdbac","dabab","acccb","bbaba","ddccb","acaca","dddab"]
+		},
+		{
+			name:"李秀",
+			ans:["dadbc","cdbac","baaab","accbb","baaba","dbabb","bacbb","ddddb"]
+		},
+		{
+			name:"徐肖锋",
+			ans:["babbc","cccbc","ccbab","aacdb","adabb","bccbb","cdaaa","dcdab"]
+		},
+		{
+			name:"杨帆",
+			ans:["DADBBCBBAC","CABABACCBC","BBABBDBCCB","BCABADDAB"]
+		},
+		{
+			name:"彭前",
+			ans:["DADBB","CDBBC","BABAB","ACCBB","BCABA","DBCBB","BAADA","DDDAB"]
+		},
+		{
+			name:"刘志超",
+			ans:["dacbb","cdabc","babac","aacbb","baaba","dbcca","bcaba","ddaab"]
+		},
+		{
+			name:"纪才游",
+			ans:["daadc","cdbac","aadac","accab","dcaba","dacca","bdabb","cddab"]
+		},
+		{
+			name:"田瑞",
+			ans:["DABCC","CDABC","AABAB","AACBB","DAABA","DBBBA","BAABB","DDDAB"]
+		},
+		{
+			name:"黄腾",
+			ans:["daadb","caaac","badaa","accab","babba","dbbbb","bcada","dddab"]
+		},
+		{
+			name:"朱章苗",
+			ans:["daddb","cdbac","babaa","aacdd","baaaa","adcba","cbccb","ddbdb"]
+		},
+		{
+			name:"董辰",
+			ans:["baddb","cdaac","dadaa","bccbb","bbaca","dacbb","daccb","dddab"]
+		},
+		{
+			name:"张建海",
+			ans:["dadbb","adacc","aabab","aacbc","bdabc","dbdca","bccdd","ddaab"]
+		},
+		{
+			name:"韩瑞",
+			ans:["DADDB","BDBAC","BAACA","ABCDB","BAAAA","ABCBB","BAABA","DDBDB"]
+		},
+		{
+			name:"潘权豪",
+			ans:["dadbc","bdbac","dabac","aacbb","aaaba","ddcbb","ddaca","ddbab"]
+		},
+		{
+			name:"刘尚坤",
+			ans:["BADBB","CDBAC","BABAC","ACCBB","BAABD","DBCBB","BDADB","DDDAB"]
+		},
+		{
+			name:"胡鑫",
+			ans:["daabb","cdbbc","cabab","aacbb","caaba","dacba","aaada","ddddb"]
+		},
+		{
+			name:"罗琦磊",
+			ans:["dabbb","cabbc","aabdc","adcdb","baaba","dbcbb","bdaba","dddab"]
+		},
+		{
+			name:"肖鹏",
+			ans:["DABAB","CDBAC","CABAA","CCCBC","ACAAA","ABCBB","BAADA","DDDAB"]
+		},
+		{
+			name:"李悦辰",
+			ans:["DAADB","CDBCC","CABAA","ACCAB","BAABB","DDCBB","BCADA","BDDAB"]
+		},
+		{
+			name:"李乃昂",
+			ans:["daadb","caaac","cabaa","accaa","baaba","dbcbb","bdadb","dddab"]
+		},
+		{
+			name:"邱荣誉",
+			ans:["dadbb","cdbac","aadba","abdbb","ddbbc","dbdcb","bcaba","dadab"]
+		},
+		{
+			name:"邵将",
+			ans:["daddb","cdbac","babaa","accab","baaaa","abcba","baada","ddbdb"]
+		},
+		{
+			name:"宋邵彬",
+			ans:["dacbb","cdbac","babab","accdc","aaaca","abcbb","badda","dddab"]
+		},
+		{
+			name:"张明威",
+			ans:["BADBB","CDBAC","BABAC","ACCBB","BAABD","DBCBB","BCADB","DDDAB"]
+		}
+
+
+	]	
+	console.log(stu.length);
+ 	var newAns = crArr(ans);
+ 	var cou = [];
+ 	function crArr(arr){
+ 		var str = arr.join("");
+ 		var newArr = str.split("");
+ 		return newArr;
+ 	}
+ 	$.each(stu,function(index,con){
+ 		var stuAns = crArr(con.ans);
+ 		var count = 0;
+ 		$.each(stuAns,function(index2,con2){
+ 			if(con2.toLocaleUpperCase()==newAns[index2]){
+ 				count++;
+ 			}
+ 		})
+ 		cou.push(con.name+' : '+count+"分");
+ 	})
+ 	console.log(cou)
+ 	$.each(cou,function(index,con){
+ 		document.write("<font color=red>"+con+"</font>"+"<br/>");
+ 	})
+
+
+</script>
+</html>
